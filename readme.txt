@@ -1,8 +1,10 @@
-×—–­—–­—–­—–­ –­—–­—–­—–­—–­—–­—–­—–­—–­—–­— ­—–­—–­—–­—–­—–­—–­—–­—-­—–­-–•¬
-|0O×øo·                      libwiigui 1.05                           ·oø×O0|
-|                   http://code.google.com/p/libwiigui                      |
+-----------------------------------------------------------------------------
+|0O×øo·                      libps3gui 0.01                           ·oø×O0|
+|                    https://github.com/cebash/PS3GUI                       |
 |                          (Under GPL License)                              |
-`¨•¨¨¨¨¨ ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ ¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨ ¨¨¨¨¨¨¨¨¨¨¨¨¨'
+-----------------------------------------------------------------------------
+
+libps3gui is a port of libwiigui, so here is the doc of libwiigui ;)
 
 libwiigui is a GUI library for the Wii, created to help structure the
 design of a complicated GUI interface, and to enable an author to create
@@ -38,9 +40,12 @@ also to the authors of GRRLIB and libwiisprite for laying the foundations.
 Thanks to mvit for the artwork and Peter de Man for the music used in the
 template.
 
-•˜———–—––-- - —————————––––– ———–—––-- - —————————––––– ———–—––-- - ————————•
+Ported to PS3 by cebash
+https://github.com/cebash/PS3GUI 
+
+-----------------------------------------------------------------------------
 |                                                          UPDATE HISTORY  |
-•˜———–—––-- - —————————––––– ———–—––-- - —————————––––– ———–—––-- - ————————•
+-----------------------------------------------------------------------------
 
 [1.05 - October 16, 2009]
 * Text alignment corrections
