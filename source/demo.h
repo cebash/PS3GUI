@@ -8,7 +8,9 @@
 #ifndef _DEMO_H_
 #define _DEMO_H_
 
-#include "FreeTypeGX.h"
+#ifdef DEVKITPPC
+	#include "FreeTypeGX.h"
+#endif
 
 enum {
 	METHOD_AUTO,
@@ -35,6 +37,8 @@ extern struct SSettings Settings;
 
 void ExitApp();
 extern int ExitRequested;
+#ifdef DEVKITPPC
 extern FreeTypeGX *fontSystem[];
+#endif
 
 #endif
