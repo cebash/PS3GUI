@@ -8,6 +8,8 @@
  * GUI class definitions
  ***************************************************************************/
 
+#ifdef TOPORT
+
 #include "gui.h"
 /**
  * Constructor for the GuiButton class.
@@ -355,3 +357,5 @@ void GuiButton::Update(GuiTrigger * t)
 	if(updateCB)
 		updateCB(this);
 }
+#endif
+

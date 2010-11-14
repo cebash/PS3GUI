@@ -6,6 +6,7 @@
  * Menu flow routines - handles all menu logic
  ***************************************************************************/
 
+#ifdef TOPORT
 #include <gccore.h>
 #include <ogcsys.h>
 #include <stdio.h>
@@ -817,3 +818,6 @@ void MainMenu(int menu)
 
 	mainWindow = NULL;
 }
+
+#endif
+

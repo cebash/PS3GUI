@@ -7,7 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
-
+#ifdef TOPORT
 #include "gui.h"
 /**
  * Constructor for the GuiImage class.
@@ -253,3 +253,5 @@ void GuiImage::Draw()
 	}
 	this->UpdateEffects();
 }
+#endif
+

@@ -7,7 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
-
+#ifdef TOPORT
 #include "gui.h"
 
 GuiWindow::GuiWindow()
@@ -449,3 +449,4 @@ void GuiWindow::Update(GuiTrigger * t)
 	if(updateCB)
 		updateCB(this);
 }
+#endif

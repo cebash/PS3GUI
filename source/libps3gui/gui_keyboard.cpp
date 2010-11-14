@@ -8,6 +8,7 @@
  * GUI class definitions
  ***************************************************************************/
 
+#ifdef TOPORT
 #include "gui.h"
 
 static char tmptxt[MAX_KEYBOARD_DISPLAY];
@@ -372,3 +373,6 @@ void GuiKeyboard::Update(GuiTrigger * t)
 			this->MoveSelectionVert(-1);
 	}
 }
+
+#endif
+

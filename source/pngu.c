@@ -7,6 +7,8 @@
 *
 ********************************************************************************************/
 
+#ifdef TOPORT
+
 #include <stdio.h>
 #include <malloc.h>
 #include <gccore.h>
@@ -712,3 +714,5 @@ int PNGU_EncodeFromGXTexture (IMGCTX ctx, PNGU_u32 width, PNGU_u32 height, void 
 	free(tmpbuffer);
 	return res;
 }
+
+#endif

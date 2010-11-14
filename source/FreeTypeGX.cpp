@@ -19,6 +19,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with FreeTypeGX.  If not, see <http://www.gnu.org/licenses/>.
  */
+#ifdef TOPORT
 
 #include "FreeTypeGX.h"
 
@@ -665,3 +666,5 @@ void FreeTypeGX::copyFeatureToFramebuffer(f32 featureWidth, f32 featureHeight, i
 
 	this->setDefaultMode();
 }
+#endif
+

@@ -22,17 +22,19 @@
 
 #include "input.h"
 
-#ifdef DEVKITPPC
+#ifdef TOPORT
+#include "libps3gui/gui.h"
 #include "menu.h"
 #endif
 #include "video.h"
-#include "libps3gui/gui.h"
 
 int rumbleRequest[4] = {0,0,0,0};
+#ifdef TOPORT
 GuiTrigger userInput[4];
+#endif
 static int rumbleCount[4] = {0,0,0,0};
 
-#ifdef DEVKITPPC
+#ifdef TOPORT
 /****************************************************************************
  * UpdatePads
  *
@@ -56,7 +58,6 @@ void UpdatePads()
 		userInput[i].pad.triggerR = PAD_TriggerR(i);
 	}
 }
-#endif
 
 /****************************************************************************
  * SetupPads
@@ -92,7 +93,6 @@ void ShutoffRumble()
 	}
 }
 
-#ifdef DEVKITPPC
 /****************************************************************************
  * DoRumble
  ***************************************************************************/

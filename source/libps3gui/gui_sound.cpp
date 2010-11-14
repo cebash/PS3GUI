@@ -7,6 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
+#ifdef TOPORT
 
 #include "gui.h"
 
@@ -153,3 +154,5 @@ void GuiSound::SetLoop(bool l)
 {
 	loop = l;
 }
+#endif
+

@@ -7,6 +7,8 @@
  * Generic file routines - reading, writing, browsing
  ***************************************************************************/
 
+#ifdef TOPORT
+
 #include <gccore.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -225,3 +227,5 @@ int BrowseDevice()
 	ParseDirectory(); // Parse root directory
 	return browser.numEntries;
 }
+#endif
+

@@ -28,6 +28,8 @@
  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#ifdef TOPORT
+
 #include <asndlib.h>
 #include <tremor/ivorbiscodec.h>
 #include <tremor/ivorbisfile.h>
@@ -540,3 +542,6 @@ void SetTimeOgg(s32 time_pos)
 	if (time_pos >= 0)
 		private_ogg.seek_time = time_pos;
 }
+
+#endif
+

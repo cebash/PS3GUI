@@ -5,13 +5,8 @@
  * video.cpp
  * Video routines
  ***************************************************************************/
-#ifdef DEVKITPPC
-#include <gccore.h>
-#include <ogcsys.h>
-#include <wiiuse/wpad.h>
-#elif defined PSL1GHT
 
-#endif
+#include "libps3gui/hal/videomodule.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,9 +17,6 @@
 #include "input.h"
 #include "libwiigui/gui.h"
 #endif
-
-// quick and dirty hack to include code specific to ps3
-#include "video_ps3.h"
 
 u32 FrameTimer = 0;
 
@@ -88,7 +80,7 @@ void Menu_Render()
 	FrameTimer++;
 }
 
-#ifdef DEVKITPPC
+#ifdef TOPORT
 /****************************************************************************
  * Menu_DrawImg
  *

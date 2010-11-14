@@ -7,6 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
+#ifdef TOPORT
 
 #include "gui.h"
 
@@ -364,3 +365,5 @@ void GuiOptionBrowser::Update(GuiTrigger * t)
 	if(updateCB)
 		updateCB(this);
 }
+#endif
+

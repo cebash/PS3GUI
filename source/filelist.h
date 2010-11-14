@@ -9,7 +9,7 @@
 #ifndef _FILELIST_H_
 #define _FILELIST_H_
 
-#include <gccore.h>
+#include "libps3gui/gui_types.h"
 
 // Fonts
 extern const u8		font_ttf[];

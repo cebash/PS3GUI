@@ -1,9 +1,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include <gctypes.h>
 #include <unistd.h>
 
+#include "libps3gui/gui_types.h"
 #include "gettext.h"
 #include "filelist.h"
 

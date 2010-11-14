@@ -8,6 +8,7 @@
  * GUI class definitions
  ***************************************************************************/
 
+#ifdef TOPORT
 #include "gui.h"
 
 /**
@@ -49,3 +50,6 @@ int GuiImageData::GetHeight()
 {
 	return height;
 }
+
+#endif
+

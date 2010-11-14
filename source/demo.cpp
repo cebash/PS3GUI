@@ -21,10 +21,10 @@
 
 #include "video.h"
 #ifdef DEVKITPPC
+	#include "input.h"
 	#include "FreeTypeGX.h"
 	#include "audio.h"
 	#include "menu.h"
-	#include "input.h"
 	#include "filelist.h"
 #endif
 #include "demo.h"
@@ -34,7 +34,7 @@ int ExitRequested = 0;
 
 void ExitApp()
 {
-#ifdef DEVKITPPC
+#ifdef TOPORT
 	ShutoffRumble();
 #endif
 	StopVideo();
@@ -56,8 +56,9 @@ DefaultSettings()
 int
 main(int argc, char *argv[])
 {
+	printf( "InitVideo\n");
 	InitVideo(); // Initialize video
-#ifdef DEVKITPPC
+#ifdef TOPORT
 	SetupPads(); // Initialize input
 	InitAudio(); // Initialize audio
 	fatInitDefault(); // Initialize file system
@@ -66,7 +67,7 @@ main(int argc, char *argv[])
 #endif
 
 	DefaultSettings();
-#ifdef DEVKITPPC
+#ifdef TOPORT
 	MainMenu(MENU_SETTINGS);
 #endif
 }

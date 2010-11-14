@@ -7,6 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
+#ifdef TOPORT
 
 #include "gui.h"
 #include <ogc/lwp_watchdog.h>
@@ -284,3 +285,5 @@ bool GuiTrigger::Down()
 	}
 	return false;
 }
+#endif
+

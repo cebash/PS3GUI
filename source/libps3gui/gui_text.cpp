@@ -7,6 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
+#ifdef TOPORT
 
 #include "gui.h"
 #include "../gettext.h"
@@ -478,3 +479,4 @@ void GuiText::Draw()
 	}
 	this->UpdateEffects();
 }
+#endif

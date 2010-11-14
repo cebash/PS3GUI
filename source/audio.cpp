@@ -6,6 +6,8 @@
  * Audio support
  ***************************************************************************/
 
+#ifdef TOPORT
+
 #include <gccore.h>
 #include <ogcsys.h>
 #include <asndlib.h>
@@ -33,3 +35,5 @@ void ShutdownAudio()
 	ASND_Pause(1);
 	ASND_End();
 }
+
+#endif

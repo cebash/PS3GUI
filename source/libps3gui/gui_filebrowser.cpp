@@ -7,6 +7,7 @@
  *
  * GUI class definitions
  ***************************************************************************/
+#ifdef TOPORT
 
 #include "gui.h"
 #include "filebrowser.h"
@@ -419,3 +420,5 @@ void GuiFileBrowser::Update(GuiTrigger * t)
 	if(updateCB)
 		updateCB(this);
 }
+#endif
+

@@ -8,6 +8,7 @@
  * GUI class definitions
  ***************************************************************************/
 
+#ifdef TOPORT
 #include "gui.h"
 
 /**
@@ -580,3 +581,6 @@ bool GuiElement::IsInside(int x, int y)
 		return true;
 	return false;
 }
+
+#endif
+
