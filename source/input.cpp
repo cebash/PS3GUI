@@ -6,24 +6,33 @@
  * Wii/GameCube controller management
  ***************************************************************************/
 
+#ifdef DEVKITPPC
 #include <gccore.h>
+#include <ogcsys.h>
+#include <wiiuse/wpad.h>
+#elif defined PSL1GHT
+#include <io/pad.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
-#include <ogcsys.h>
 #include <unistd.h>
-#include <wiiuse/wpad.h>
 
-#include "menu.h"
-#include "video.h"
 #include "input.h"
-#include "libwiigui/gui.h"
+
+#ifdef DEVKITPPC
+#include "menu.h"
+#endif
+#include "video.h"
+#include "libps3gui/gui.h"
 
 int rumbleRequest[4] = {0,0,0,0};
 GuiTrigger userInput[4];
 static int rumbleCount[4] = {0,0,0,0};
 
+#ifdef DEVKITPPC
 /****************************************************************************
  * UpdatePads
  *
@@ -47,6 +56,7 @@ void UpdatePads()
 		userInput[i].pad.triggerR = PAD_TriggerR(i);
 	}
 }
+#endif
 
 /****************************************************************************
  * SetupPads
@@ -82,6 +92,7 @@ void ShutoffRumble()
 	}
 }
 
+#ifdef DEVKITPPC
 /****************************************************************************
  * DoRumble
  ***************************************************************************/
@@ -105,3 +116,6 @@ void DoRumble(int i)
 		WPAD_Rumble(i, 0); // rumble off
 	}
 }
+
+#endif
+

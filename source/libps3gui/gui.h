@@ -31,7 +31,12 @@
 #ifndef LIBWIIGUI_H
 #define LIBWIIGUI_H
 
+#ifdef DEVKITPPC
 #include <gccore.h>
+#include <wiiuse/wpad.h>
+#include <asndlib.h>
+#endif
+
 #include <malloc.h>
 #include <stdlib.h>
 #include <string.h>
@@ -39,9 +44,8 @@
 #include <exception>
 #include <wchar.h>
 #include <math.h>
-#include <asndlib.h>
-#include <wiiuse/wpad.h>
 
+#ifdef DEVKITPPC
 #include "pngu.h"
 #include "FreeTypeGX.h"
 #include "video.h"
@@ -50,6 +54,17 @@
 #include "oggplayer.h"
 
 extern FreeTypeGX *fontSystem[];
+#endif
+
+typedef enum
+{
+	AbstractButtonNone,
+	AbstractButtonExecute,
+	AbstractButtonBack,
+	AbstractButtonOption,
+	AbstractButtonHome
+} AbstractButton; 
+
 
 #define SCROLL_DELAY_INITIAL	200000
 #define SCROLL_DELAY_LOOP		30000
@@ -220,6 +235,7 @@ class GuiTrigger
 		//!\return true if selection should be moved down, false otherwise
 		bool Down();
 
+	protected:
 		WPADData wpaddata; //!< Wii controller trigger data
 		PADData pad; //!< GameCube controller trigger data
 		WPADData * wpad; //!< Wii controller trigger
@@ -558,6 +574,7 @@ class GuiImageData
 		int width; //!< Width of image
 };
 
+#ifdef DEVKITPPC
 //!Display, manage, and manipulate images in the GUI
 class GuiImage : public GuiElement
 {
@@ -981,4 +998,5 @@ class GuiFileBrowser : public GuiElement
 		bool listChanged;
 };
 
+#endif
 #endif

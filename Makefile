@@ -29,7 +29,7 @@ export DEPSDIR	:=	$(BUILDDIR)
 
 # Remove temporary the sources that won't compile
 CFILES		:=
-CXXFILES	:= demo.cpp video.cpp video_ps3.cpp
+CXXFILES	:= demo.cpp video.cpp video_ps3.cpp # input.cpp
 #CFILES		:= $(foreach dir,$(SOURCE),$(notdir $(wildcard $(dir)/*.c)))
 #CXXFILES	:= $(foreach dir,$(SOURCE),$(notdir $(wildcard $(dir)/*.cpp)))
 SFILES		:= $(foreach dir,$(SOURCE),$(notdir $(wildcard $(dir)/*.S)))
