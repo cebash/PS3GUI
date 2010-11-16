@@ -6,14 +6,6 @@
  * Wii/GameCube controller management
  ***************************************************************************/
 
-#ifdef DEVKITPPC
-#include <gccore.h>
-#include <ogcsys.h>
-#include <wiiuse/wpad.h>
-#elif defined PSL1GHT
-#include <io/pad.h>
-#endif
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -21,6 +13,7 @@
 #include <unistd.h>
 
 #include "input.h"
+#include "libps3gui/hal/inputpadmodule.h"
 
 #ifdef TOPORT
 #include "libps3gui/gui.h"
@@ -58,6 +51,7 @@ void UpdatePads()
 		userInput[i].pad.triggerR = PAD_TriggerR(i);
 	}
 }
+#endif
 
 /****************************************************************************
  * SetupPads
@@ -66,20 +60,10 @@ void UpdatePads()
  ***************************************************************************/
 void SetupPads()
 {
-	PAD_Init();
-	WPAD_Init();
-
-	// read wiimote accelerometer and IR data
-	WPAD_SetDataFormat(WPAD_CHAN_ALL,WPAD_FMT_BTNS_ACC_IR);
-	WPAD_SetVRes(WPAD_CHAN_ALL, screenwidth, screenheight);
-
-	for(int i=0; i < 4; i++)
-	{
-		userInput[i].chan = i;
-		userInput[i].wpad = WPAD_Data(i);
-	}
+	InputPadModule::getInputPadModule()->init( ePadAll);	
 }
 
+#ifdef TOPORT
 /****************************************************************************
  * ShutoffRumble
  ***************************************************************************/

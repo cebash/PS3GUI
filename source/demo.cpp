@@ -20,8 +20,8 @@
 #include <unistd.h>
 
 #include "video.h"
+#include "input.h"
 #ifdef DEVKITPPC
-	#include "input.h"
 	#include "FreeTypeGX.h"
 	#include "audio.h"
 	#include "menu.h"
@@ -58,8 +58,8 @@ main(int argc, char *argv[])
 {
 	printf( "InitVideo\n");
 	InitVideo(); // Initialize video
-#ifdef TOPORT
 	SetupPads(); // Initialize input
+#ifdef TOPORT
 	InitAudio(); // Initialize audio
 	fatInitDefault(); // Initialize file system
 	InitFreeType((u8*)font_ttf, font_ttf_size); // Initialize font system

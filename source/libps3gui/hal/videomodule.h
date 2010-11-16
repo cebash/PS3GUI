@@ -10,6 +10,7 @@ protected:
 	virtual void initializeGPU( void) = 0;
 	virtual void initializeDoubleBuffer( void) = 0;
 
+	VideoModule() {}
 public:
 	virtual void init(void);
 	virtual void stop(void) = 0;
