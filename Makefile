@@ -7,10 +7,10 @@ include $(PSL1GHT)/Makefile.base
 
 # mess used in the wii... maybe we can avoid using this...
 define bin2o
-	bin2s -a 32 $< | ppu-as -o $(@)
-	echo "extern const u8" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"_end[];" > `(echo $(<F) | tr . _)`.h
-	echo "extern const u8" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"[];" >> `(echo $(<F) | tr . _)`.h
-	echo "extern const u32" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`_size";" >> `(echo $(<F) | tr . _)`.h
+	@bin2s -a 32 $< | ppu-as -o $(@)
+	@echo "extern const u8" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"_end[];" > `(echo $(<F) | tr . _)`.h
+	@echo "extern const u8" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`"[];" >> `(echo $(<F) | tr . _)`.h
+	@echo "extern const u32" `(echo $(<F) | sed -e 's/^\([0-9]\)/_\1/' | tr . _)`_size";" >> `(echo $(<F) | tr . _)`.h
 endef
 
 #bin2s is a program provided in the devkitpro sdk of the wii
@@ -26,7 +26,7 @@ TARGET		:=	$(notdir $(CURDIR))
 BUILD		:=	build
 SOURCES		:=	source source/libps3gui source/images source/fonts source/sounds \
 				source/lang source/libps3gui/hal
-INCLUDE	:=	source
+INCLUDE		:=	source
 DATA		:=	data
 
 TITLE		:=	Template - PSL1GHT
@@ -37,14 +37,14 @@ CONTENTID	:=	UP0001-$(APPID)_00-0000000000000000
 # options for code generation
 #---------------------------------------------------------------------------------
 
-CFLAGS		+= -g -O2 -Wall --std=gnu99
-CXXFLAGS	+= -g -O2 -Wall
+CFLAGS		+= -g -O2 -Wall -DPSL1GHT --std=gnu99
+CXXFLAGS	+= -g -O2 -Wall -DPSL1GHT
 
 #---------------------------------------------------------------------------------
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
 #LIBS 		:=	-lpng -lz -lfat -lwiiuse -lbte -lasnd -logc -lvorbisidec -lfreetype
-LIBS		:=	-lstdc++
+LIBS		:=	-lstdc++ -lgcm_sys -lreality -lsysutil -lio
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib

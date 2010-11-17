@@ -6,7 +6,8 @@
 #include <wiiuse/wpad.h>
 #include <io/pad.h>
 
-void InputPadModule::setup( size_t szNumberPads, bool enableAccel, bool enableIR)
+void InputPadModule::init( EPadNumber eNbPads, EPadCapability ePadCap)
+setup( size_t szNumberPads, bool enableAccel, bool enableIR)
 {
 	PAD_Init();
 	WPAD_Init();

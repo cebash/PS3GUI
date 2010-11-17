@@ -4,16 +4,15 @@
 
 #ifdef DEVKITPPC
 
-#include <wiiuse/wpad.h>
 class InputPadModuleWii : public InputPadModule
 {
 protected:
-	InputPadModuleWii() {}
 
 public:
-	void setup( int iNumberPads, bool enableAccel, bool enableIR);
+
+	virtual void init( EPadNumber eNbPads, EPadCapability ePadCap);
 
 };
 
-
 #endif
+

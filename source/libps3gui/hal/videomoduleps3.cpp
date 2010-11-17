@@ -16,6 +16,13 @@
 #include "videomoduleps3.h"
 
 
+VideoModulePS3::VideoModulePS3()
+{
+	_currentBuffer = 0;
+	buffer[0] = 0;
+	buffer[1] = 0;
+	_CommandBuffer = 0;
+}
 
 #ifdef PSL1GHT
 void VideoModulePS3::initializeGPU(void)
@@ -48,17 +55,17 @@ void VideoModulePS3::setupScreenMode(void)
     assert(videoConfigure(0, &vconfig, NULL, 0) == 0);
     assert(videoGetState(0, 0, &state) == 0);
 
-    s32 buffer_size = 4 * _resolution.width * _resolution.height; // each pixel is 4 bytes
-    printf("buffers will be 0x%x bytes\n", buffer_size);
-
     gcmSetFlipMode(GCM_FLIP_VSYNC); // Wait for VSYNC to flip
 }
 
 void VideoModulePS3::initializeDoubleBuffer(void)
 {
+    s32 buffer_size = 4 * _resolution.width * _resolution.height; // each pixel is 4 bytes
+    printf("buffers will be 0x%x bytes\n", buffer_size);
+
     // Allocate two buffers for the RSX to draw to the screen (double buffering)
-    buffer[0] = rsxMemAlign(16, buffer_size);
-    buffer[1] = rsxMemAlign(16, buffer_size);
+    buffer[0] = (s32 *) rsxMemAlign(16, buffer_size);
+    buffer[1] = (s32 *) rsxMemAlign(16, buffer_size);
     assert(buffer[0] != NULL && buffer[1] != NULL);
 
     u32 offset[2];
@@ -90,10 +97,10 @@ void VideoModulePS3::waitFlip( void)
 void VideoModulePS3::clearBackground( void)
 {
 	s32 i, j;
-    for(i = 0; i < res.height; i++) {
+    for(i = 0; i < _resolution.height; i++) {
         s32 color = 0;
-        for(j = 0; j < res.width; j++)
-            buffer[i* res.width + j] = color;
+        for(j = 0; j < _resolution.width; j++)
+            (buffer[_currentBuffer])[i* _resolution.width + j] = color;
     }
 
 }

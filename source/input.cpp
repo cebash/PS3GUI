@@ -19,13 +19,13 @@
 #include "libps3gui/gui.h"
 #include "menu.h"
 #endif
-#include "video.h"
+//#include "video.h"
 
-int rumbleRequest[4] = {0,0,0,0};
 #ifdef TOPORT
+int rumbleRequest[4] = {0,0,0,0};
 GuiTrigger userInput[4];
-#endif
 static int rumbleCount[4] = {0,0,0,0};
+#endif
 
 #ifdef TOPORT
 /****************************************************************************
