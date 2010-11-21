@@ -98,9 +98,9 @@ s32 main(s32 argc, const char* argv[])
 {
 	atexit(unload_modules);
 
-#ifdef TOPORT
 	InitVideo(); // Initialize video
 	SetupPads(); // Initialize input
+#ifdef TOPORT
 	InitAudio(); // Initialize audio
 	fatInitDefault(); // Initialize file system
 	InitFreeType((u8*)font_ttf, font_ttf_size); // Initialize font system
@@ -117,11 +117,8 @@ s32 main(s32 argc, const char* argv[])
 
 #endif
 	VideoModule * video = VideoModule::getVideoModule();
-	video->init();
-	video->initConsole();
 
 	InputPadModule * inpad = InputPadModule::getInputPadModule();
-	inpad->init(ePadAll);
 
 #ifdef PSL1GHT
 	PngDatas png1;

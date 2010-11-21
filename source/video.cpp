@@ -37,6 +37,8 @@ ResetVideo_Menu()
 
 	// setup the vertex descriptor
 	videoMod->setupVertexDesc();
+
+	videoMod->flip();
 }
 
 /****************************************************************************
@@ -52,6 +54,8 @@ InitVideo ()
 	VideoModule * videoModule = VideoModule::getVideoModule();
 	
 	videoModule->init();
+
+	videoModule->initConsole();
 
 	ResetVideo_Menu();
 	// Finally, the video is up and ready for use :)
