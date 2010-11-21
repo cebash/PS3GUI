@@ -32,8 +32,6 @@
 	#include <pngdec/pngdec.h>
 	#include <pngdec/loadpng.h>
 	#include <sysmodule/sysmodule.h>
-	#include "sconsole.h"
-	#include <io/pad.h>
 #endif
 
 #include "demo.h"
@@ -41,22 +39,20 @@
 struct SSettings Settings;
 int ExitRequested = 0;
 
-
-
-
 #define DEBUG_X 800
 #define DEBUG_Y 400
 
 
 void drawFrame(unsigned int *buffer, long frame) {
 	VideoModule * video = VideoModule::getVideoModule();
+	u32 height = video->getHeight(), width = video->getWidth();
 	u32 i, j;
-	for(i = 0; i < video->getHeight(); i++) {
-		s32 color = (i / (video->getHeight() * 1.0) * 256);
+	for(i = 0; i < height; i++) {
+		s32 color = (i / (height * 1.0) * 256);
 		// This should make a nice black to green graident
 		color = (color << 8) | ((frame % 255) << 16);
-		for(j = 0; j < video->getWidth(); j++)
-			buffer[i* video->getWidth() + j] = color;
+		for(j = 0; j < width; j++)
+			buffer[i* width + j] = color;
 	}
 
 }
@@ -152,49 +148,10 @@ s32 main(s32 argc, const char* argv[])
 		video->waitFlip(); // Wait for the last flip to finish, so we can draw to the old buffer
 
 #ifdef PSL1GHT
-//		drawFrame(video->getCurrentBuffer(), frame++); // Draw into the unused buffer
+		drawFrame(video->getCurrentBuffer(), frame++); // Draw into the unused buffer
 
 		if(png1.bmp_out) {
-
-			static int x=0,y=0,dx=2,dy=2;
-
-			u32 *scr=  video->getCurrentBuffer();
-			u32 *png= (u32 *) png1.bmp_out;
-			int n, m;
-
-			// update x, y coordinates
-
-			x+=dx; y+=dy;
-
-			if(x < 0) {x=0; dx=1;}
-			if(x > (video->getWidth()-png1.width)) {x=(video->getWidth()-png1.width); dx=-2;}
-
-			if(y < 0) {y=0; dy=1;}
-			if(y > (video->getHeight()-png1.height)) {y=(video->getHeight()-png1.height); dy=-2;}
-
-
-			// update screen buffer from coordinates
-
-			scr+=y*video->getWidth()+x;
-
-			// draw PNG
-
-			for(n=0;n<png1.height;n++) {
-
-				if((y+n)>=video->getHeight()) break;
-
-				for(m=0;m<png1.width;m++) {
-
-					if((x+m)>=video->getWidth()) break;
-					scr[m]=png[m];
-
-				}
-
-				png+=png1.wpitch>>2;
-				scr+=video->getWidth();
-
-			}
-
+			video->displayBitmap( (u32 *)png1.bmp_out, png1.height, png1.width, png1.wpitch);
 		}
 #endif
 		video->printf(DEBUG_X, DEBUG_Y, str);
