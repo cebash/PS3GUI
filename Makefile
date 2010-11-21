@@ -44,7 +44,7 @@ CXXFLAGS	+= -g -O2 -Wall -DPSL1GHT
 # any extra libraries we wish to link with the project
 #---------------------------------------------------------------------------------
 #LIBS 		:=	-lpng -lz -lfat -lwiiuse -lbte -lasnd -logc -lvorbisidec -lfreetype
-LIBS		:=	-lstdc++ -lgcm_sys -lreality -lsysutil -lio
+LIBS		:=	-lstdc++ -lgcm_sys -lreality -lsysutil -lio -lreality -lpngdec -lsysmodule
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing
 # include and lib

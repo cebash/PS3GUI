@@ -36,5 +36,6 @@ void VideoModule::init(void)
 	initializeGPU();
 #endif
 
+	flip();
 }
 

@@ -15,6 +15,7 @@
 
 #include "videomoduleps3.h"
 
+#include "sconsole.h"
 
 VideoModulePS3::VideoModulePS3()
 {
@@ -25,6 +26,7 @@ VideoModulePS3::VideoModulePS3()
 }
 
 #ifdef PSL1GHT
+
 void VideoModulePS3::initializeGPU(void)
 {
    // Allocate a 1Mb buffer, alligned to a 1Mb boundary to be our shared IO memory with the RSX.
@@ -61,7 +63,7 @@ void VideoModulePS3::setupScreenMode(void)
 void VideoModulePS3::initializeDoubleBuffer(void)
 {
     s32 buffer_size = 4 * _resolution.width * _resolution.height; // each pixel is 4 bytes
-    printf("buffers will be 0x%x bytes\n", buffer_size);
+    //printf("buffers will be 0x%x bytes\n", buffer_size);
 
     // Allocate two buffers for the RSX to draw to the screen (double buffering)
     buffer[0] = (s32 *) rsxMemAlign(16, buffer_size);
@@ -113,5 +115,60 @@ void VideoModulePS3::stop( void)
 {
 
 }
+
+void VideoModulePS3::initConsole(void)
+{
+	sconsoleInit( FONT_COLOR_WHITE, FONT_COLOR_BLACK, getWidth(), getHeight());
+}
+
+void VideoModulePS3::displayBitmap( u32* bitmap, int height, int width, int wpitch)
+{
+
+	static int x=0,y=0,dx=2,dy=2;
+
+	u32 *scr=  (u32 *) buffer[_currentBuffer];
+	int n, m;
+
+	// update x, y coordinates
+
+	x+=dx; y+=dy;
+
+	if(x < 0) {x=0; dx=1;}
+	if(x > (_resolution.width-width)) {x=(_resolution.width-width); dx=-2;}
+
+	if(y < 0) {y=0; dy=1;}
+	if(y > (_resolution.height-height)) {y=(_resolution.height-height); dy=-2;}
+
+
+	// update screen buffer from coordinates
+
+	scr+=y*_resolution.width+x;
+
+	// draw PNG
+
+	for(n=0;n<height;n++) {
+
+		if((y+n)>=_resolution.height) break;
+
+		for(m=0;m<width;m++) {
+
+			if((x+m)>=_resolution.width) break;
+			scr[m]=bitmap[m];
+
+		}
+
+		bitmap+=wpitch>>2;
+		scr+=_resolution.width;
+
+	}
+}
+
+
+void VideoModulePS3::printf( u32 x, u32 y, const char * str)
+{
+	if( x < getHeight() && y << getWidth())
+		print(x, y, (char*)str, (uint32_t*) buffer[_currentBuffer]);
+}
+
 #endif
 

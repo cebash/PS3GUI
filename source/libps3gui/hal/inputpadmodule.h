@@ -20,8 +20,23 @@ typedef enum
 	ePadCapRumble		= 4
 } EPadCapability;
 
+typedef enum
+{
+	eAbsButNone,
+	eAbsButExecute,
+	eAbsButBack,
+	eAbsButOption,
+	eAbsButHome
+} EAbstractButton; 
+
 class Pad
 {
+protected:
+	EPadCapability ePadCap;
+public:
+	virtual EPadCapability getCapabilty() {return ePadCap;}
+
+	virtual bool isPressed( EAbstractButton eAbstractButton) = 0;
 };
 
 class InputPadModule
@@ -36,6 +51,7 @@ public:
 	~InputPadModule() {}
 
 	virtual void init( EPadNumber eNbPads, EPadCapability ePadCap = ePadCapNone) = 0;
+	virtual void refreshPadConnections() = 0;
 
 	Pad * getPad( size_t szPadNumber);
 	size_t getPadNumber () {return _pads.size();}
