@@ -47,6 +47,8 @@ protected:
 	InputPadModule() {}
 
 	std::vector<Pad *> _pads;	
+	void clearPads(void);
+
 public:
 	~InputPadModule() {}
 

@@ -36,10 +36,9 @@ void InputPadModulePS3::refreshPadConnections()
 	PadInfo padinfo;
 	ioPadGetInfo(&padinfo);
 
-	_pads.clear();
+	clearPads();
 
-	int i;
-	for(i=0; i<MAX_PADS; i++){
+	for( int i = 0; i < MAX_PADS; i++){
 		if(padinfo.status[i]){
 
 			PS3Pad * pclPad = new PS3Pad(i);
