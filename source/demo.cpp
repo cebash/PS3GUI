@@ -103,6 +103,8 @@ s32 main(s32 argc, const char* argv[])
 #ifdef TOPORT
 	InitAudio(); // Initialize audio
 	fatInitDefault(); // Initialize file system
+#endif
+#ifdef TOPORT
 	InitFreeType((u8*)font_ttf, font_ttf_size); // Initialize font system
 	InitGUIThreads(); // Initialize GUI
 	DefaultSettings();
@@ -129,6 +131,9 @@ s32 main(s32 argc, const char* argv[])
 
 	long frame = 0; // To keep track of how many frames we have rendered.
 
+	int x = DEBUG_X, y = DEBUG_Y;
+	
+
 	// Ok, everything is setup. Now for the main loop.
 	while(1){
 		char str [300];
@@ -138,9 +143,18 @@ s32 main(s32 argc, const char* argv[])
 		// Check the pads.
 		for( size_t i = 0; i < inpad->getPadNumber(); i++)
 		{
-			if( inpad->getPad(i)->isPressed( eAbsButExecute))
+			if( inpad->getPad(i)->isPressed( eAbsButUp) && y > 0)
+				y--;
+			if( inpad->getPad(i)->isPressed( eAbsButDown) && y < 1080)
+				y++;
+			if( inpad->getPad(i)->isPressed( eAbsButLeft) && x > 0)
+				x--;
+			if( inpad->getPad(i)->isPressed( eAbsButRight) && x > 0)
+				x++;
+			else if( inpad->getPad(i)->isPressed( eAbsButExecute))
 				return 0;
 		}
+		sprintf(str, "Pad number : %d, frame %d", (int) inpad->getPadNumber(),(int)frame);
 
 		video->waitFlip(); // Wait for the last flip to finish, so we can draw to the old buffer
 
@@ -151,7 +165,7 @@ s32 main(s32 argc, const char* argv[])
 			video->displayBitmap( (u32 *)png1.bmp_out, png1.height, png1.width, png1.wpitch);
 		}
 #endif
-		video->printf(DEBUG_X, DEBUG_Y, str);
+		video->printf(x, y, str);
 
 		video->flip(); // Flip buffer onto screen
 	}

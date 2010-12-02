@@ -16,6 +16,24 @@ bool PS3Pad::isPressed( EAbstractButton eAbstractButton)
 	case eAbsButExecute:
 		bReturn = _clPadData.BTN_CROSS;
 		break;
+	case eAbsButBack: 
+		bReturn = _clPadData.BTN_CIRCLE;
+		break;
+	case eAbsButOption:
+		bReturn = _clPadData.BTN_TRIANGLE;
+		break;
+	case eAbsButRight:
+		bReturn = _clPadData.BTN_RIGHT;
+		break;
+	case eAbsButUp:
+		bReturn = _clPadData.BTN_UP;
+		break;
+	case eAbsButLeft:
+		bReturn = _clPadData.BTN_LEFT;
+		break;
+	case eAbsButDown:
+		bReturn = _clPadData.BTN_DOWN;
+		break;
 	}
 	return bReturn;
 }

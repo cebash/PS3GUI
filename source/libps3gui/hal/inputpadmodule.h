@@ -26,7 +26,11 @@ typedef enum
 	eAbsButExecute,
 	eAbsButBack,
 	eAbsButOption,
-	eAbsButHome
+	eAbsButHome,
+	eAbsButRight,
+	eAbsButUp,
+	eAbsButLeft,
+	eAbsButDown,
 } EAbstractButton; 
 
 class Pad
